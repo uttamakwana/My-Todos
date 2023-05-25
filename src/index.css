@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,600;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Wix+Madefor+Text:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap");
+/* 
+  👉 Poppins
+  👉 Nunito
+  👉 Merriweather
+  👉 Instrument Sans
+  👉 Quicksand
+  👉 Rubik
+  👉 Source Code Pro
+  👉 Source Sans Pro
+  👉 Wix Madefor Text
+*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 10px;
+  }
+
+  .todo-input-container input:focus + .label-effect,
+  .todo-input-container input:valid + .label-effect {
+    /* padding: 5px; */
+    transform: translateY(-25px) translateX(0px);
+  }
+
+  .todo-container {
+    padding-right: 3rem;
+  }
+
+  .todo-container .delete-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    top: 10px;
+    animation: scale 1s infinite ease;
+  }
+
+  .todo-input-container input,
+  .todo-input-container select {
+    padding: 1rem .3rem;
+  }
+
+  @keyframes scale {
+    from {
+      scale: 1;
+    }
+
+    to {
+      scale: 1.1;
+    }
+  }
+}
