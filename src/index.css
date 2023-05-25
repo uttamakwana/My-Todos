@@ -59,9 +59,8 @@
     animation: scale 1s infinite ease;
   }
 
-  .todo-input-container input,
-  .todo-input-container select {
-    padding: 1rem .3rem;
+  #priority{
+    padding-left: .3rem;
   }
 
   @keyframes scale {
