@@ -60,7 +60,16 @@
   }
 
   #priority{
-    padding-left: .3rem;
+    padding-left: 10px;
+  }
+
+  .priority-drop-down-img{
+    margin-top: 7px;
+  }
+
+  .priority-drop-down-img img{
+    height: 30px;
+    width: 30px;
   }
 
   @keyframes scale {

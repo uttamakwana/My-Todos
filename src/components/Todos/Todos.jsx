@@ -1,6 +1,8 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
+import GetTime from "./GetTime";
 
 const Todos = () => {
+  const [isDone, setIsDone] = useState(false);
   const [todoData, setTodoData] = useState({
     id: "",
     titleData: "",
@@ -29,25 +31,42 @@ const Todos = () => {
   const [todo, setTodo] = useState(getDataFromLocalStorage());
 
   useLayoutEffect(() => {
-    const inputString = time;
-    const dt = new Date(inputString);
+    // const inputString = time;
+    // const dt = new Date(inputString);
 
     // Format the output string
-    const options = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    };
-    const outputString = dt.toLocaleString("en-US", options);
+    // const options = {
+    //   day: "numeric",
+    //   month: "long",
+    //   year: "numeric",
+    //   hour: "numeric",
+    //   minute: "numeric",
+    //   hour12: true,
+    // };
+    // const outputString = dt.toLocaleString("en-US", options);
+
+    // var currentdate = new Date();
+    // var datetime =
+    //   "Added on: " +
+    //   currentdate.getDate() +
+    //   "/" +
+    //   (currentdate.getMonth() + 1) +
+    //   "/" +
+    //   currentdate.getFullYear() +
+    //   " at " +
+    //   currentdate.getHours() +
+    //   ":" +
+    //   currentdate.getMinutes() +
+    //   ":" +
+    //   currentdate.getSeconds()
+    //   ;
+
     setTodoData({
       id: new Date(),
       titleData: title,
       descriptionData: description,
       priorityData: priority,
-      timeData: outputString,
+      timeData: GetTime(),
     });
   }, [title, description, priority, time]);
 
@@ -55,21 +74,22 @@ const Todos = () => {
     if (
       todoData.titleData !== "" &&
       todoData.descriptionData !== "" &&
-      todoData.priorityData !== "" &&
-      todoData.timeData !== "Invalid Date" && 
-      todoData.timeData !== ""
+      todoData.priorityData !== ""
+      // &&
+      // todoData.timeData !== "Invalid Date" &&
+      // todoData.timeData !== ""
     ) {
       setTodo([...todo, todoData]);
       setTitle("");
       setDescription("");
       setPriority("");
-      setTime("");
+      // setTime("");
     } else {
       if (
-        todoData.timeData === "" &&
+        todoData.titleData === "" &&
         todoData.descriptionData === "" &&
-        todoData.priorityData === "" &&
-        todoData.titleData
+        todoData.priorityData === ""
+        // todoData.timeData === ""
       ) {
         return alert("Please enter all the details!📝");
       } else {
@@ -77,10 +97,8 @@ const Todos = () => {
           alert("Please enter the title of todo");
         } else if (todoData.descriptionData === "") {
           alert("Please enter the description of todo");
-        } else if (todoData.priorityData === "") {
-          alert("Please enter the priority of your todo");
         } else {
-          alert("Please enter the time of your todo");
+          alert("Please enter the priority of your todo");
         }
       }
     }
@@ -135,24 +153,33 @@ const Todos = () => {
               Description
             </label>
           </div>
-          <div className="todo-input-container">
+          <div className="todo-input-container priority-container">
             <label htmlFor="priority">Priority</label>
             <select
               name="priority"
               id="priority"
-              value={`${priority ? priority : "Priority"}`}
+              // value={`${priority ? priority : "Priority"}`}
               onChange={(e) => {
                 setPriority(e.target.value);
               }}
             >
-                <option value="Priority" selected>Priority</option>
+              <option value="">choose a priority</option>
               <option value="A">A</option>
               <option value="B">B</option>
               <option value="C">C</option>
               <option value="D">D</option>
             </select>
+            <div className="priority-drop-down-img">
+              <img
+                width="30"
+                height="30"
+                src="https://img.icons8.com/arcade/64/down-squared.png"
+                alt="down-squared"
+              />
+            </div>
           </div>
-          <div className="todo-input-container">
+          {/* want to get current time by not taking it from input */}
+          {/* <div className="todo-input-container">
             <label htmlFor="time">Time</label>
             <input
               type="datetime-local"
@@ -163,29 +190,26 @@ const Todos = () => {
                 setTime(e.target.value);
               }}
             />
-          </div>
+          </div> */}
           <div className="todo-input-container">
             <button type="submit" id="submit-todo-btn" onClick={handleSubmit}>
               Submit
-            </button>{(title !== "" ||
-            description !== "" ||
-            priority !== "" ||
-            time !== "") && (
-            // <div className="todo-input-container">
+            </button>
+            {(title !== "" || description !== "" || priority !== "") && (
+              // <div className="todo-input-container">
               <button
                 onClick={() => {
                   setTitle("");
                   setDescription("");
                   setPriority("");
-                  setTime("");
+                  // setTime("");
                 }}
               >
                 Reset
               </button>
-            // </div>
-          )}
+              // </div>
+            )}
           </div>
-          
         </div>
       </main>
 
@@ -195,19 +219,32 @@ const Todos = () => {
         <h1>Your Todos</h1>
         {todo.map((todo, index) => {
           return (
-            <div className="todo-container" key={todo.id}>
+            <div
+              className={`todo-container ${isDone ? "todo-is-done" : ""}`}
+              key={todo.id}
+            >
               <h2>{todo.titleData}</h2>
-              <p className="todo-desc">{todo.descriptionData}</p>
+              <p className={`todo-desc ${isDone ? "todo-is-done" : ""}`}>{todo.descriptionData}</p>
               <span>
                 Priority : <strong>{todo.priorityData}</strong>
               </span>
-              <p>{todo.timeData}</p>
+              <p class="todo-time">{todo.timeData}</p>
               <img
                 src="https://img.icons8.com/arcade/64/delete-forever.png"
                 alt="filled-trash"
                 className="delete-icon"
                 onClick={() => deleteTodo(index)}
               />
+              <div className="todo-checkbox">
+                <input
+                  type="checkbox"
+                  id="checkbox"
+                  onClick={() => {
+                    setIsDone(!isDone);
+                  }}
+                />
+                <label htmlFor="checkbox">Done</label>
+              </div>
             </div>
           );
         })}

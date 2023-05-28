@@ -115,6 +115,40 @@ option {
   gap: 1rem;
 }
 
+.priority-container{
+  position: relative;
+}
+
+#priority{
+  appearance: none;
+  padding-left: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+option{
+  background-color: #242424;
+  height: 20px;
+  padding: 1rem;
+  color: white;
+}
+.priority-drop-down-img{
+  position: absolute;
+  top: 0;
+  right: 5px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  pointer-events: none;
+}
+
+.priority-drop-down-img img{
+  /* padding-right: 1rem; */
+  width: 35px;
+  height: 35px;
+}
+
 /* 
  ******************
  ******************
@@ -150,6 +184,11 @@ option {
   /* margin: 0 auto; */
 }
 
+.todo-container.todo-is-done{
+  background-color: lightgreen;
+  color: black;
+}
+
 .todo-container h2{
   /* background-color: #242424; */
   /* padding: 0 9px; */
@@ -162,6 +201,10 @@ option {
   color: darkgrey;
 }
 
+.todo-desc.todo-is-done{
+  color: #242424;
+}
+
 .todo-container .delete-icon{
   position: absolute;
   width: 40px;
@@ -170,6 +213,24 @@ option {
   top: 5px;
   border-radius: 50%;
   padding: 4px;
+}
+
+.todo-time{
+  padding-right: 1.5rem;
+}
+
+
+.todo-container .todo-checkbox{
+  position: absolute;
+  bottom: 0;
+  /* width: 40px; */
+  /* height: 40px; */
+  padding: 4px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 /* Margin auto to all components
