@@ -2,7 +2,6 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import GetTime from "./GetTime";
 
 const Todos = () => {
-  const [isDone, setIsDone] = useState(false);
   const [todoData, setTodoData] = useState({
     id: "",
     titleData: "",
@@ -27,6 +26,18 @@ const Todos = () => {
       return [];
     }
   };
+
+  const getIsTodoDoneArrayFromLocalStorage = () => {
+    const isTodoDoneArrayList = localStorage.getItem("isTodoDoneStateArray");
+    if (isTodoDoneArrayList) {
+      return JSON.parse(localStorage.getItem("isTodoDoneStateArray"));
+    } else {
+      return [];
+    }
+  };
+
+  const [isDone, setIsDone] = useState(getIsTodoDoneArrayFromLocalStorage());
+  // const [idOfTodo, setIdOfTodo] = useState(0);
 
   const [todo, setTodo] = useState(getDataFromLocalStorage());
 
@@ -108,7 +119,6 @@ const Todos = () => {
     const filterArray = todo.filter((todo, index) => {
       return index !== id;
     });
-
     setTodo(filterArray);
   };
 
@@ -116,7 +126,24 @@ const Todos = () => {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todo));
+    localStorage.setItem("isTodoDoneStateArray", JSON.stringify(isDone));
   });
+
+  const toggleDone = (index) => {
+    setIsDone((prev) => {
+      const updateTodoDoneArray = [...prev];
+      updateTodoDoneArray[index] = !updateTodoDoneArray[index];
+      return updateTodoDoneArray;
+    });
+  };
+
+  const toggleDoneOnDelete = (index) => {
+    setIsDone((prev) => {
+      const updateTodoDoneArray = [...prev];
+      updateTodoDoneArray[index] = false;
+      return updateTodoDoneArray;
+    });
+  };
 
   return (
     <>
@@ -158,7 +185,7 @@ const Todos = () => {
             <select
               name="priority"
               id="priority"
-              // value={`${priority ? priority : "Priority"}`}
+              value={`${priority ? priority : ""}`}
               onChange={(e) => {
                 setPriority(e.target.value);
               }}
@@ -173,7 +200,7 @@ const Todos = () => {
               <img
                 width="30"
                 height="30"
-                src="https://img.icons8.com/arcade/64/down-squared.png"
+                src="https://img.icons8.com/fluency/48/circled-chevron-down.png" 
                 alt="down-squared"
               />
             </div>
@@ -218,32 +245,60 @@ const Todos = () => {
       <main className="display-todos-container">
         <h1>Your Todos</h1>
         {todo.map((todo, index) => {
+          const isTodoDone = isDone[index];
           return (
             <div
-              className={`todo-container ${isDone ? "todo-is-done" : ""}`}
+              // className={`todo-container ${isDone ? "todo-is-done" : ""}`}
+              className={`todo-container ${isTodoDone ? "todo-is-done" : ""}`}
               key={todo.id}
+              style={{}}
             >
               <h2>{todo.titleData}</h2>
-              <p className={`todo-desc ${isDone ? "todo-is-done" : ""}`}>{todo.descriptionData}</p>
+              {/* <p className={`todo-desc ${isDone ? "todo-is-done" : ""}`}>{todo.descriptionData}</p> */}
+              <p className="todo-desc">{todo.descriptionData}</p>
               <span>
                 Priority : <strong>{todo.priorityData}</strong>
               </span>
-              <p class="todo-time">{todo.timeData}</p>
+              <p className="todo-time">{todo.timeData}</p>
               <img
                 src="https://img.icons8.com/arcade/64/delete-forever.png"
                 alt="filled-trash"
                 className="delete-icon"
-                onClick={() => deleteTodo(index)}
+                onClick={() => {
+                  deleteTodo(index);
+                  toggleDoneOnDelete(index);
+                }}
               />
               <div className="todo-checkbox">
-                <input
-                  type="checkbox"
-                  id="checkbox"
-                  onClick={() => {
-                    setIsDone(!isDone);
-                  }}
-                />
-                <label htmlFor="checkbox">Done</label>
+                {!isTodoDone ? (
+                  <input
+                    type="checkbox"
+                    id={`checkbox-${index}`}
+                    checked={isTodoDone}
+                    onChange={() => {
+                      toggleDone(index);
+                    }}
+                    // onClick={() => {
+                    //   setIdOfTodo(index);
+                    //   setIsDone(!isDone);
+                    // }}
+                  />
+                ) : (
+                  <img
+                    width="30"
+                    height="30"
+                    src="https://img.icons8.com/arcade/64/checkmark.png"
+                    alt="checkmark"
+                    onClick={() => {
+                      toggleDone(index);
+                    }}
+                  />
+                )}
+                {!isTodoDone ? (
+                  <label htmlFor={`checkbox-${index}`}>Done</label>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           );
