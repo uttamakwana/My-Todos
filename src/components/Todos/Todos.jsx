@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import GetTime from "./GetTime";
+import { motion } from "framer-motion";
 
 const Todos = () => {
   const [todoData, setTodoData] = useState({
@@ -40,6 +41,13 @@ const Todos = () => {
   // const [idOfTodo, setIdOfTodo] = useState(0);
 
   const [todo, setTodo] = useState(getDataFromLocalStorage());
+
+  const [handleTodoButton, setHandleTodoButton] = useState(false);
+
+  const delayForTodoCard = (index, state) => {
+    //? */ (index * 0.6) according to DMAS rule this will first execute
+    return `${state ? 0.6 : 4.3 + index * 0.6}`;
+  };
 
   useLayoutEffect(() => {
     // const inputString = time;
@@ -82,6 +90,7 @@ const Todos = () => {
   }, [title, description, priority, time]);
 
   const handleSubmit = () => {
+    setHandleTodoButton(true);
     if (
       todoData.titleData !== "" &&
       todoData.descriptionData !== "" &&
@@ -150,7 +159,13 @@ const Todos = () => {
       <main className="todos-container">
         {/* <h1 className="todos-heading">Add Todo</h1> */}
         <div className="todos">
-          <div className="todo-input-container">
+          <motion.div
+            transition={{ delay: 1.1 }}
+            initial={{ scale: 0, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="todo-input-container"
+          >
             <input
               type="text"
               name="title"
@@ -164,8 +179,14 @@ const Todos = () => {
             <label htmlFor="title" className="label-effect">
               Title
             </label>
-          </div>
-          <div className="todo-input-container">
+          </motion.div>
+          <motion.div
+            transition={{ delay: 1.5 }}
+            initial={{ scale: 0, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="todo-input-container"
+          >
             <input
               type="text"
               name="description"
@@ -179,9 +200,15 @@ const Todos = () => {
             <label htmlFor="description" className="label-effect">
               Description
             </label>
-          </div>
-          <div className="todo-input-container priority-container">
-            <label htmlFor="priority">Priority</label>
+          </motion.div>
+          <motion.div
+            transition={{ delay: 1.9 }}
+            initial={{ scale: 0, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="todo-input-container priority-container"
+          >
+            {/* <label htmlFor="priority">Priority</label> */}
             <select
               name="priority"
               id="priority"
@@ -200,11 +227,11 @@ const Todos = () => {
               <img
                 width="30"
                 height="30"
-                src="https://img.icons8.com/fluency/48/circled-chevron-down.png" 
+                src="https://img.icons8.com/fluency/48/circled-chevron-down.png"
                 alt="down-squared"
               />
             </div>
-          </div>
+          </motion.div>
           {/* want to get current time by not taking it from input */}
           {/* <div className="todo-input-container">
             <label htmlFor="time">Time</label>
@@ -219,9 +246,16 @@ const Todos = () => {
             />
           </div> */}
           <div className="todo-input-container">
-            <button type="submit" id="submit-todo-btn" onClick={handleSubmit}>
-              Submit
-            </button>
+            <motion.button
+              type="submit"
+              id="submit-todo-btn"
+              onClick={handleSubmit}
+              transition={{ delay: 2.3, duration: 0.5 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+            >
+              Add Todo
+            </motion.button>
             {(title !== "" || description !== "" || priority !== "") && (
               // <div className="todo-input-container">
               <button
@@ -242,12 +276,96 @@ const Todos = () => {
 
       {/* Showing Todos below the add todo component */}
 
-      <main className="display-todos-container">
-        <h1>Your Todos</h1>
+      <motion.main
+        transition={{ delay: 2.5, duration: 0.5 }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="display-todos-container"
+      >
+        <motion.h1>
+          <motion.span
+            transition={{ delay: 2.5 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            Y
+          </motion.span>
+          <motion.span
+            transition={{ delay: 2.7 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            o
+          </motion.span>
+          <motion.span
+            transition={{ delay: 2.9 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            u
+          </motion.span>
+          <motion.span
+            transition={{ delay: 3.1 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            r
+          </motion.span>
+          &nbsp;
+          <motion.span
+            transition={{ delay: 3.3 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            T
+          </motion.span>
+          <motion.span
+            transition={{ delay: 3.5 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            o
+          </motion.span>
+          <motion.span
+            transition={{ delay: 3.7 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            d
+          </motion.span>
+          <motion.span
+            transition={{ delay: 3.9 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            o
+          </motion.span>
+          <motion.span
+            transition={{ delay: 4.1 }}
+            initial={{ scale: 0, opacity: 0, x: 20 }}
+            animate={{ scale: 1, opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+          >
+            s
+          </motion.span>
+        </motion.h1>
         {todo.map((todo, index) => {
           const isTodoDone = isDone[index];
           return (
-            <div
+            <motion.div
+              transition={{
+                delay: delayForTodoCard(index, handleTodoButton),
+              }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               // className={`todo-container ${isDone ? "todo-is-done" : ""}`}
               className={`todo-container ${isTodoDone ? "todo-is-done" : ""}`}
               key={todo.id}
@@ -300,10 +418,10 @@ const Todos = () => {
                   ""
                 )}
               </div>
-            </div>
+            </motion.div>
           );
         })}
-      </main>
+      </motion.main>
     </>
   );
 };
