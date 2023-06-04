@@ -37,7 +37,7 @@
 
 @media (max-width: 480px) {
   html {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .todo-input-container input:focus + .label-effect,
@@ -59,15 +59,11 @@
     animation: scale 1s infinite ease;
   }
 
-  #priority{
+  #priority {
     padding-left: 10px;
   }
 
-  .priority-drop-down-img{
-    margin-top: 7px;
-  }
-
-  .priority-drop-down-img img{
+  .priority-drop-down-img img {
     height: 30px;
     width: 30px;
   }
