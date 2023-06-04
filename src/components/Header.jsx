@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-
 const Header = () => {
+  const handleHeaderClick = () => {
+    document.getElementById("title").focus();
+  };
   return (
     <header className="header">
-      <h1 className="header-logo-text">
+      <h1 className="header-logo-text" onClick={handleHeaderClick}>
         <motion.span
           transition={{ delay: 0.1 }}
           initial={{ scale: 0, opacity: 0, x: 20 }}

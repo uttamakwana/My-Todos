@@ -276,152 +276,160 @@ const Todos = () => {
 
       {/* Showing Todos below the add todo component */}
 
-      <motion.main
-        transition={{ delay: 2.5, duration: 0.5 }}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="display-todos-container"
-      >
-        <motion.h1>
-          <motion.span
-            transition={{ delay: 2.5 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            Y
-          </motion.span>
-          <motion.span
-            transition={{ delay: 2.7 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            o
-          </motion.span>
-          <motion.span
-            transition={{ delay: 2.9 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            u
-          </motion.span>
-          <motion.span
-            transition={{ delay: 3.1 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            r
-          </motion.span>
-          &nbsp;
-          <motion.span
-            transition={{ delay: 3.3 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            T
-          </motion.span>
-          <motion.span
-            transition={{ delay: 3.5 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            o
-          </motion.span>
-          <motion.span
-            transition={{ delay: 3.7 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            d
-          </motion.span>
-          <motion.span
-            transition={{ delay: 3.9 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            o
-          </motion.span>
-          <motion.span
-            transition={{ delay: 4.1 }}
-            initial={{ scale: 0, opacity: 0, x: 20 }}
-            animate={{ scale: 1, opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-          >
-            s
-          </motion.span>
-        </motion.h1>
-        {todo.map((todo, index) => {
-          const isTodoDone = isDone[index];
-          return (
-            <motion.div
-              transition={{
-                delay: delayForTodoCard(index, handleTodoButton),
-              }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              // className={`todo-container ${isDone ? "todo-is-done" : ""}`}
-              className={`todo-container ${isTodoDone ? "todo-is-done" : ""}`}
-              key={todo.id}
-              style={{}}
+      {todo.length !== 0 ? (
+        <motion.main
+          transition={{
+            delay: 2.5,
+            duration: 0.5,
+          }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="display-todos-container"
+        >
+          <motion.h1>
+            <motion.span
+              transition={{ delay: 2.5 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
             >
-              <h2>{todo.titleData}</h2>
-              {/* <p className={`todo-desc ${isDone ? "todo-is-done" : ""}`}>{todo.descriptionData}</p> */}
-              <p className="todo-desc">{todo.descriptionData}</p>
-              <span>
-                Priority : <strong>{todo.priorityData}</strong>
-              </span>
-              <p className="todo-time">{todo.timeData}</p>
-              <img
-                src="https://img.icons8.com/arcade/64/delete-forever.png"
-                alt="filled-trash"
-                className="delete-icon"
-                onClick={() => {
-                  deleteTodo(index);
-                  toggleDoneOnDelete(index);
+              Y
+            </motion.span>
+            <motion.span
+              transition={{ delay: 2.7 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              o
+            </motion.span>
+            <motion.span
+              transition={{ delay: 2.9 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              u
+            </motion.span>
+            <motion.span
+              transition={{ delay: 3.1 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              r
+            </motion.span>
+            &nbsp;
+            <motion.span
+              transition={{ delay: 3.3 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              T
+            </motion.span>
+            <motion.span
+              transition={{ delay: 3.5 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              o
+            </motion.span>
+            <motion.span
+              transition={{ delay: 3.7 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              d
+            </motion.span>
+            <motion.span
+              transition={{ delay: 3.9 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              o
+            </motion.span>
+            <motion.span
+              transition={{ delay: 4.1 }}
+              initial={{ scale: 0, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+            >
+              s
+            </motion.span>
+          </motion.h1>
+          {todo.map((todo, index) => {
+            const isTodoDone = isDone[index];
+            return (
+              <motion.div
+                transition={{
+                  delay: delayForTodoCard(index, handleTodoButton),
+                  duration: 0.5,
                 }}
-              />
-              <div className="todo-checkbox">
-                {!isTodoDone ? (
-                  <input
-                    type="checkbox"
-                    id={`checkbox-${index}`}
-                    checked={isTodoDone}
-                    onChange={() => {
-                      toggleDone(index);
-                    }}
-                    // onClick={() => {
-                    //   setIdOfTodo(index);
-                    //   setIsDone(!isDone);
-                    // }}
-                  />
-                ) : (
-                  <img
-                    width="30"
-                    height="30"
-                    src="https://img.icons8.com/arcade/64/checkmark.png"
-                    alt="checkmark"
-                    onClick={() => {
-                      toggleDone(index);
-                    }}
-                  />
-                )}
-                {!isTodoDone ? (
-                  <label htmlFor={`checkbox-${index}`}>Done</label>
-                ) : (
-                  ""
-                )}
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.main>
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                // className={`todo-container ${isDone ? "todo-is-done" : ""}`}
+                className={`todo-container ${isTodoDone ? "todo-is-done" : ""}`}
+                key={todo.id}
+                style={{}}
+              >
+                <h2>{todo.titleData}</h2>
+                {/* <p className={`todo-desc ${isDone ? "todo-is-done" : ""}`}>{todo.descriptionData}</p> */}
+                <p className="todo-desc">{todo.descriptionData}</p>
+                <span>
+                  Priority : <strong>{todo.priorityData}</strong>
+                </span>
+                <p className="todo-time">{todo.timeData}</p>
+                <img
+                  src="https://img.icons8.com/arcade/64/delete-forever.png"
+                  alt="filled-trash"
+                  className="delete-icon"
+                  onClick={() => {
+                    deleteTodo(index);
+                    toggleDoneOnDelete(index);
+                  }}
+                />
+                <div className="todo-checkbox">
+                  {!isTodoDone ? (
+                    <input
+                      type="checkbox"
+                      id={`checkbox-${index}`}
+                      checked={isTodoDone}
+                      onChange={() => {
+                        toggleDone(index);
+                      }}
+                      // onClick={() => {
+                      //   setIdOfTodo(index);
+                      //   setIsDone(!isDone);
+                      // }}
+                    />
+                  ) : (
+                    <img
+                      width="30"
+                      height="30"
+                      src="https://img.icons8.com/arcade/64/checkmark.png"
+                      alt="checkmark"
+                      onClick={() => {
+                        toggleDone(index);
+                      }}
+                    />
+                  )}
+                  {!isTodoDone ? (
+                    <label htmlFor={`checkbox-${index}`}>Done</label>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.main>
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -22,7 +22,7 @@
 select,
 button,
 img,
-input[type="checkbox"] {
+input[type="checkbox"], h1 {
   cursor: pointer;
 }
 
